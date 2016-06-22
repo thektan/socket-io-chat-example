@@ -2,11 +2,22 @@
 var app = require('express')();
 var http = require('http').Server(app);
 
+// Initilize new instance by passing the http object.
+var io = require('socket.io')(http);
+
 // We define a route handler '/' that gets called when we hit our website home.
 app.get(
 	'/',
 	function(request, response) {
 		response.sendFile(__dirname + '/index.html');
+	}
+);
+
+// Listen to the 'connection' event for incoming sockets and log into console.
+io.on(
+	'connection',
+	function(socket) {
+		console.log('a user connected');
 	}
 );
 
