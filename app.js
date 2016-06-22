@@ -19,6 +19,15 @@ io.on(
 	function(socket) {
 		console.log('a user connected');
 
+		// Print when a chat message is emitted.
+		socket.on(
+			'chat message',
+			function(msg) {
+				console.log('message: ' + msg);
+			}
+		);
+
+		// Print when a user disconnects.
 		socket.on(
 			'disconnect',
 			function() {
